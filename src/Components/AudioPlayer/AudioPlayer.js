@@ -6,6 +6,12 @@ import { Container, Drawer } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Fab } from "@material-ui/core";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import TextField from "@mui/material/TextField";
+import DialogActions from "@mui/material/DialogActions";
+import Dialog from "@mui/material/Dialog";
 
 /*
  * Read the blog post here:
@@ -17,6 +23,10 @@ const AudioPlayer = ({ tracks }) => {
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLiked, setIsLiked] = useState("");
+  const [showTextField, setShowTextField] = useState(false);
+  const [showAudioField, setShowAudioField] = useState(false);
+  const [textOpen, setTextOpen] = React.useState(true);
+  const [audioOpen, setAudioOpen] = React.useState(true);
 
   // Destructure for conciseness
   const { title, artist, color, image, audioSrc } = tracks[trackIndex];
@@ -25,6 +35,24 @@ const AudioPlayer = ({ tracks }) => {
   const audioRef = useRef(new Audio(audioSrc));
   const intervalRef = useRef();
   const isReady = useRef(false);
+
+  const handleTextOpen = () => {
+    setTextOpen(true);
+  };
+
+  const handleTextClose = () => {
+    setTextOpen(false);
+    setShowTextField(false);
+  };
+
+  const handleAudioOpen = () => {
+    setAudioOpen(true);
+  };
+
+  const handleAudioClose = () => {
+    setAudioOpen(false);
+    setShowAudioField(false);
+  };
 
   // Destructure for conciseness
   const { duration } = audioRef.current;
@@ -161,14 +189,54 @@ const AudioPlayer = ({ tracks }) => {
           <Button style={{ marginRight: "5px" }} variant="outlined">
             Quiz!
           </Button>
-          <Button style={{ marginRight: "5px" }} variant="outlined">
-            write?
+          <Button style={{ marginRight: "5px" }} variant="outlined" onClick={() => { setShowTextField(true)}}>
+            Write?
           </Button>
-          <Button style={{ marginRight: "5px" }} variant="outlined">
+          <Button style={{ marginRight: "5px" }} variant="outlined" onClick={() => { setShowAudioField(true)}}>
             Speak away!
           </Button>
         </Container>
       </div>
+      {showTextField &&
+          <div className="dialog-box">
+          <Dialog open={handleTextOpen} onClose={handleTextClose}>
+            <DialogTitle>Tell us how you feel :)</DialogTitle>
+            <DialogContent>
+              <TextField
+                  autoFocus
+                  margin="dense"
+                  id="name"
+                  label="Write here..."
+                  variant="standard"
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleTextClose}>Cancel</Button>
+              <Button onClick={handleTextClose}>Submit</Button>
+            </DialogActions>
+          </Dialog>
+          </div>
+      }
+      {showAudioField &&
+          <div className="dialog-box">
+            <Dialog open={handleAudioOpen} onClose={handleAudioClose}>
+              <DialogTitle>Tell us how you feel :)</DialogTitle>
+              <DialogContent>
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Speak here..."
+                    variant="standard"
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleAudioClose}>Cancel</Button>
+                <Button onClick={handleAudioClose}>Submit</Button>
+              </DialogActions>
+            </Dialog>
+          </div>
+      }
     </div>
   );
 };
