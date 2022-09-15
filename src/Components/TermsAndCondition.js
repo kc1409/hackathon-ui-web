@@ -3,7 +3,7 @@ import { Container, Drawer } from "@material-ui/core";
 import Button from "@mui/material/Button";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 
-import "./../App.css";
+import "./Home/Home.css";
 
 const Terms = () => {
   const [agree, setAgree] = useState(false);
