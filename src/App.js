@@ -3,7 +3,7 @@ import "./App.css";
 import { Container, Drawer } from "@material-ui/core";
 import DrawerMenu from "./Components/DrawerMenu";
 import Image from "material-ui-image";
-
+import Terms from "./Components/TermsAndCondition";
 function App() {
   return (
     <div className="App">
@@ -19,7 +19,7 @@ function App() {
       >
         SAIL
       </Container>
-      <Container
+      {/* <Container
         maxWidth="md"
         style={{
           color: "#576490",
@@ -28,8 +28,8 @@ function App() {
           height: "100%",
         }}
       >
-        Sentiment Analysis And Illustrations
-      </Container>
+        (Sentiment Analysis And Interventions)
+      </Container> */}
       <Container
         maxWidth="md"
         style={{
@@ -38,6 +38,7 @@ function App() {
           paddingHorizontal: 20,
           height: "100%",
           fontWeight: 200,
+          fontSize: 12,
         }}
       >
         Welcome to SAIL , We have curated multiple fun sessions for you to
@@ -49,13 +50,7 @@ function App() {
           style={{ paddingLeft: 20 }}
         />
       </Container>
-
-      <Container>
-        <Button variant="contained" color="success">
-          Success
-        </Button>
-      </Container>
-
+      <Terms></Terms>
       <DrawerMenu></DrawerMenu>
     </div>
   );
