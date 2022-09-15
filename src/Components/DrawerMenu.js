@@ -18,7 +18,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -50,6 +49,7 @@ const AppBar = styled(MuiAppBar, {
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
+    backgroundColor: "#576490",
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -82,7 +82,7 @@ export default function PersistentDrawerLeft() {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar style={{ backgroundColor: "#576490" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -92,7 +92,7 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" style={{}}>
             Menu
           </Typography>
         </Toolbar>
@@ -120,30 +120,39 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+        <List style={{ backgroundColor: "#while" }}>
+          <ListItem key="home" disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="profile" disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="My Profile" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="tracking" disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Tracking" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="social" disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Social" />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
       <Main open={open}>

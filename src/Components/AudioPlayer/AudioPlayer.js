@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import AudioControls from "./AudioControls";
 import Backdrop from "./Backdrop";
 import "./styles.css";
-import {Button} from "@material-ui/core";
-import {Fab} from "@material-ui/core";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Container, Drawer } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import { Fab } from "@material-ui/core";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 /*
  * Read the blog post here:
@@ -116,50 +117,58 @@ const AudioPlayer = ({ tracks }) => {
   return (
     <div className="audio-player-main">
       <div>
-        <div style={{marginTop: "50px"}} className="audio-player">
+        <div
+          style={{ marginTop: "100px", backgroundColor: "#576490" }}
+          className="audio-player"
+        >
           <div className="track-info">
             <img
-                className="artwork"
-                src={image}
-                alt={`track artwork for ${title} by ${artist}`}
+              className="artwork"
+              src={image}
+              alt={`track artwork for ${title} by ${artist}`}
             />
             <h2 className="title">{title}</h2>
             <h3 className="artist">{artist}</h3>
             <AudioControls
-                isPlaying={isPlaying}
-                onPrevClick={toPrevTrack}
-                onNextClick={toNextTrack}
-                onPlayPauseClick={setIsPlaying}
+              isPlaying={isPlaying}
+              onPrevClick={toPrevTrack}
+              onNextClick={toNextTrack}
+              onPlayPauseClick={setIsPlaying}
             />
             <input
-                type="range"
-                value={trackProgress}
-                step="1"
-                min="0"
-                max={duration ? duration : `${duration}`}
-                className="progress"
-                onChange={(e) => onScrub(e.target.value)}
-                onMouseUp={onScrubEnd}
-                onKeyUp={onScrubEnd}
-                style={{ background: trackStyling }}
+              type="range"
+              value={trackProgress}
+              step="1"
+              min="0"
+              max={duration ? duration : `${duration}`}
+              className="progress"
+              onChange={(e) => onScrub(e.target.value)}
+              onMouseUp={onScrubEnd}
+              onKeyUp={onScrubEnd}
+              style={{ background: trackStyling }}
             />
           </div>
           <Backdrop
-              trackIndex={trackIndex}
-              activeColor={color}
-              isPlaying={isPlaying}
+            trackIndex={trackIndex}
+            activeColor={color}
+            isPlaying={isPlaying}
           />
         </div>
 
-        <div style={{paddingTop: "30px"}}>
-          <Button style={{marginRight: "5px"}} variant="outlined">Take a Quiz!</Button>
-          <Button style={{marginRight: "5px"}} variant="outlined">Wanna write?</Button>
-          <Button style={{marginRight: "5px"}} variant="outlined">Speak away!</Button>
-        </div>
+        <Container
+          style={{ paddingTop: "50px", justifyContent: "space-between" }}
+        >
+          <Button style={{ marginRight: "5px" }} variant="outlined">
+            Quiz!
+          </Button>
+          <Button style={{ marginRight: "5px" }} variant="outlined">
+            write?
+          </Button>
+          <Button style={{ marginRight: "5px" }} variant="outlined">
+            Speak away!
+          </Button>
+        </Container>
       </div>
-      <div style={{marginTop: "50px"}}>
-        <Fab color={isLiked} aria-label="like" onClick={() => {setIsLiked("secondary")}}><FavoriteIcon/></Fab>
-      </div>>
     </div>
   );
 };

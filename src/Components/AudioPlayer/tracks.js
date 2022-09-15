@@ -12,20 +12,20 @@ export default [
     artist: "Wataboi",
     audioSrc: cali,
     image: imgSrc,
-    color: "#6FEDD6"
+    color: "#e7c6ff",
   },
   {
     title: "50",
     artist: "tobylane",
     audioSrc: fifty,
     image: imgSrc2,
-    color: "#A3BCF9"
+    color: "#A3BCF9",
   },
   {
     title: "I Wonder",
     artist: "DreamHeaven",
     audioSrc: iwonder,
     image: imgSrc3,
-    color: "#ECC5FB"
-  }
+    color: "#ECC5FB",
+  },
 ];

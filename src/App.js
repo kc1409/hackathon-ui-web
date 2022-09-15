@@ -5,7 +5,10 @@ import DrawerMenu from "./Components/DrawerMenu";
 import Image from "material-ui-image";
 import Terms from "./Components/TermsAndCondition";
 import AudioPlayer from "./Components/AudioPlayer/AudioPlayer";
+import ImageSlider from "./Components/ImageSlider";
 import tracks from "./Components/AudioPlayer/tracks";
+import slidesData from "./assets/Data";
+import ChatWindow from "./Components/ChatWindow";
 
 function App() {
   return (
@@ -54,8 +57,10 @@ function App() {
       {/*  />*/}
       {/*</Container>*/}
       {/*<Terms></Terms>*/}
-      {/*<DrawerMenu></DrawerMenu>*/}
-        <AudioPlayer tracks={tracks} />
+      {/* <AudioPlayer tracks={tracks} /> */}
+      {/* <AudioPlayer tracks={tracks} /> */}
+      {/* <ImageSlider slides={slidesData} /> */}
+      <ChatWindow></ChatWindow>
     </div>
   );
 }
