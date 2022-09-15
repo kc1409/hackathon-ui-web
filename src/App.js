@@ -9,6 +9,7 @@ import ImageSlider from "./Components/ImageSlider";
 import tracks from "./Components/AudioPlayer/tracks";
 import slidesData from "./assets/Data";
 import ChatWindow from "./Components/ChatWindow";
+import VoiceRecognition from "./Components/VoiceRecognition";
 
 function App() {
   return (
@@ -60,7 +61,9 @@ function App() {
       {/* <AudioPlayer tracks={tracks} /> */}
       {/* <AudioPlayer tracks={tracks} /> */}
       {/* <ImageSlider slides={slidesData} /> */}
-      <ChatWindow></ChatWindow>
+      {/* <ChatWindow></ChatWindow> */}
+      {/* <VoiceRecognition></VoiceRecognition> */}
+      <VoiceRecognition />
     </div>
   );
 }
