@@ -12,6 +12,16 @@ import DialogContentText from "@mui/material/DialogContentText";
 import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 /*
  * Read the blog post here:
@@ -26,7 +36,14 @@ const AudioPlayer = ({ tracks }) => {
   const [showTextField, setShowTextField] = useState(false);
   const [showAudioField, setShowAudioField] = useState(false);
   const [textOpen, setTextOpen] = React.useState(true);
+  const [textField, setTextField] = React.useState(true);
+
   const [audioOpen, setAudioOpen] = React.useState(true);
+  const [showQuiz, setShowQuiz] = React.useState(false);
+  const [quizResponse, setQuizResponse] = React.useState(false);
+
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
   // Destructure for conciseness
   const { title, artist, color, image, audioSrc } = tracks[trackIndex];
@@ -52,6 +69,19 @@ const AudioPlayer = ({ tracks }) => {
   const handleAudioClose = () => {
     setAudioOpen(false);
     setShowAudioField(false);
+  };
+
+  const handleQuizOpen = () => {
+    setShowQuiz(true);
+  };
+
+  const handleQuizClose = () => {
+    setShowQuiz(false);
+  };
+
+  const handleRadioButtonChange = (e) => {
+    setQuizResponse(e.target.value);
+    console.log(quizResponse);
   };
 
   // Destructure for conciseness
@@ -215,28 +245,100 @@ const AudioPlayer = ({ tracks }) => {
               <Button onClick={handleTextClose}>Submit</Button>
             </DialogActions>
           </Dialog>
-          </div>
-      }
-      {showAudioField &&
-          <div className="dialog-box">
-            <Dialog open={handleAudioOpen} onClose={handleAudioClose}>
-              <DialogTitle>Tell us how you feel :)</DialogTitle>
-              <DialogContent>
-                <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="Speak here..."
-                    variant="standard"
-                />
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleAudioClose}>Cancel</Button>
-                <Button onClick={handleAudioClose}>Submit</Button>
-              </DialogActions>
-            </Dialog>
-          </div>
-      }
+        </div>
+      )}
+      {showAudioField && (
+        <div className="dialog-box">
+          <Dialog
+            open={handleAudioOpen}
+            onClose={handleAudioClose}
+            fullWidth={true}
+          >
+            <DialogTitle>Tell us how you feel :)</DialogTitle>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Speak here..."
+                variant="standard"
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleAudioClose}>Cancel</Button>
+              <Button onClick={handleAudioClose}>Submit</Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      )}
+      {showQuiz && (
+        <div className="dialog-box">
+          <Dialog
+            open={handleQuizOpen}
+            onClose={handleQuizClose}
+            fullWidth={true}
+          >
+            <Container
+              style={{
+                justifyContent: "space-evenly",
+                alignItems: "center",
+                alignContent: "center",
+                paddingTop: 15,
+                flexDirection: "row",
+                backgroundColor: "#D1D2F9",
+              }}
+            >
+              <CardContent>
+                <Typography
+                  sx={{ fontSize: 14, paddingTop: 4 }}
+                  color="text.primary"
+                  gutterBottom
+                >
+                  Is SAIL the best app for Mental Health ?
+                </Typography>
+              </CardContent>
+              <FormControl
+                style={{ paddingLeft: "55px", justifyContent: "space-between" }}
+              >
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="true"
+                    control={<Radio />}
+                    label="True"
+                    onChange={(e) => {
+                      handleRadioButtonChange(e);
+                    }}
+                  />
+                  <FormControlLabel
+                    value="false"
+                    control={<Radio />}
+                    label="False"
+                    onChange={(e) => {
+                      handleRadioButtonChange(e);
+                    }}
+                  />
+                </RadioGroup>
+              </FormControl>
+              <CardActions
+                style={{
+                  justifyContent: "space-evenly",
+                  alignItems: "center",
+                  alignContent: "center",
+                  paddingTop: 15,
+                }}
+              ></CardActions>
+            </Container>
+            <DialogActions style={{ backgroundColor: "#D1D2F9" }}>
+              <Button onClick={handleQuizOpen}>Cancel</Button>
+              <Button onClick={handleQuizClose}>Submit</Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      )}
     </div>
   );
 };
