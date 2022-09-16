@@ -40,7 +40,6 @@ function Home() {
         />
       </Container>
       <Terms></Terms>
-      <DrawerMenu></DrawerMenu>
     </div>
   );
 }

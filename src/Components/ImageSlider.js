@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { SliderData } from "./../assets/SliderData";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
-import { Container, Drawer } from "@material-ui/core";
+import { Container } from "@material-ui/core";
+import DrawerMenu from "./DrawerMenu";
 
 const ImageSlider = ({ slides }) => {
   const [current, setCurrent] = useState(0);
@@ -20,24 +21,27 @@ const ImageSlider = ({ slides }) => {
   }
 
   return (
-    <Container style={{ backgroundColor: "#D1D2F9" }}>
-      <section className="slider">
-        <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-        <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
-        {SliderData.map((slide, index) => {
-          return (
-            <div
-              className={index === current ? "slide active" : "slide"}
-              key={index}
-            >
-              {index === current && (
-                <img src={slide.image} alt="travel image" className="image" />
-              )}
-            </div>
-          );
-        })}
-      </section>
-    </Container>
+    <div>
+      <Container style={{ backgroundColor: "#D1D2F9" }}>
+        <section className="slider">
+          <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
+          <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
+          {SliderData.map((slide, index) => {
+            return (
+              <div
+                className={index === current ? "slide active" : "slide"}
+                key={index}
+              >
+                {index === current && (
+                  <img src={slide.image} alt="travel image" className="image" />
+                )}
+              </div>
+            );
+          })}
+        </section>
+      </Container>
+      <DrawerMenu></DrawerMenu>
+    </div>
   );
 };
 

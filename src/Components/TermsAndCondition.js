@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 
 import "./Home/Home.css";
+import { Link } from "react-router-dom";
 
 const Terms = () => {
   const [agree, setAgree] = useState(false);
@@ -13,11 +14,6 @@ const Terms = () => {
     // if agree === false, it will be set to true
     setAgree(!agree);
     // Don't miss the exclamation mark
-  };
-
-  // When the button is clicked
-  const btnHandler = () => {
-    alert("The buttion is clickable!");
   };
 
   return (
@@ -43,14 +39,15 @@ const Terms = () => {
 
         {/* Don't miss the exclamation mark* */}
         <Container style={{ marginTop: 36 }}>
-          <Button
-            variant="Outlined"
-            style={{ backgroundColor: "#A3BCF9" }}
-            onClick={btnHandler}
-            disabled={!agree}
-          >
-            Let's Begin
-          </Button>
+          <Link to={"/login"}>
+            <Button
+              variant="Outlined"
+              style={{ backgroundColor: "#A3BCF9" }}
+              disabled={!agree}
+              >
+              Let's Begin
+            </Button>
+          </Link>
         </Container>
       </div>
     </div>
