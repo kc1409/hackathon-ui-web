@@ -24,10 +24,32 @@
     padding-top: 5px;
 }
 
-#input {
+#content {
     height: 95%;
     width: 100%;
-    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+
+#loginanimation {
+    align-self: center;
+    height: 50%
+}
+
+#card {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#card-comp {
+    background-color: #a3bcf9;
+}
+
+#input {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;

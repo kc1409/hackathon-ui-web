@@ -1,6 +1,6 @@
 import React from 'react';
 import Lottie from 'lottie-react-web';
-import animation from '../../assets/images/75097-hand-gesture-love-sign.json'
+import animation from '../../assets/images/97930-loading.json'
 import "./styles.css"
 
 function Loading() {
